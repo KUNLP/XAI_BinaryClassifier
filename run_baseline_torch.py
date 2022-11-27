@@ -7,11 +7,9 @@ from attrdict import AttrDict
 from transformers import AutoTokenizer
 from transformers import BertConfig,RobertaConfig
 
-from src.model.model import BertForSequenceClassification, RobertaForSequenceClassification
-#from src.model.model_multi import BertForSequenceClassification, RobertaForSequenceClassification
+from src.model.model_multi import BertForSequenceClassification
 
-from src.model.main_functions import train, evaluate, predict
-#from src.model.main_functions_multi import train, evaluate, predict
+from src.model.main_functions_multi import train, evaluate, predict
 
 from src.functions.utils import init_logger, set_seed
 
@@ -90,24 +88,6 @@ def create_model(args):
         args.model_name_or_path = args.cache_dir
         # print(tokenizer.convert_tokens_to_ids("<WORD>"))
 
-
-
-    # vocab 추가
-    # 중요 단어의 UNK 방지 및 tokenize를 방지해야하는 경우(HTML 태그 등)에 활용
-    # "세종대왕"이 OOV인 경우 ['세종대왕'] --tokenize-->  ['UNK'] (X)
-    # html tag인 [td]는 tokenize가 되지 않아야 함. (완전한 tag의 형태를 갖췄을 때, 의미를 갖기 때문)
-    #                             ['[td]'] --tokenize-->  ['[', 't', 'd', ']'] (X)
-
-    if args.from_init_weight and args.add_vocab:
-        if args.from_init_weight:
-            add_token = {
-                "additional_special_tokens": ["[td]", "추가 단어 1", "추가 단어 2"]}
-            # 추가된 단어는 tokenize 되지 않음
-            # ex
-            # '[td]' vocab 추가 전 -> ['[', 't', 'd', ']']
-            # '[td]' vocab 추가 후 -> ['[td]']
-            tokenizer.add_special_tokens(add_token)
-            model.resize_token_embeddings(len(tokenizer))
     model.to(args.device)
     return model, tokenizer
 
@@ -139,9 +119,7 @@ if __name__ == '__main__':
     # Directory
 
     #------------------------------------------------------------------------------------------------
-    # cli_parser.add_argument("--data_dir", type=str, default="./data")
     cli_parser.add_argument("--data_dir", type=str, default="./data/origin/merge_origin_preprocess")
-    #cli_parser.add_argument("--data_dir", type=str, default="./data/origin/merge_origin_preprocess_woCNJ")
 
     cli_parser.add_argument("--train_file", type=str, default='origin_train.json')
     #cli_parser.add_argument("--train_file", type=str, default='sample.json')
@@ -150,26 +128,18 @@ if __name__ == '__main__':
 
     # ------------------------------------------------------------------------------------------------
 
-    # roberta
-    cli_parser.add_argument("--model_name_or_path", type=str, default="./roberta/init_weight")
-    cli_parser.add_argument("--cache_dir", type=str, default="./roberta/init_weight")
+    ## roberta
+    # cli_parser.add_argument("--model_name_or_path", type=str, default="./roberta/init_weight")
+    # cli_parser.add_argument("--cache_dir", type=str, default="./roberta/init_weight")
 
-    # # bert
-    # cli_parser.add_argument("--model_name_or_path", type=str, default="./bert/init_weight")
-    # cli_parser.add_argument("--cache_dir", type=str, default="./bert/init_weight")
+    # bert
+    cli_parser.add_argument("--model_name_or_path", type=str, default="./bert/init_weight")
+    cli_parser.add_argument("--cache_dir", type=str, default="./bert/init_weight")
 
     #------------------------------------------------------------------------------------------------------------
+    cli_parser.add_argument("--output_dir", type=str, default="./bert/biaffine_model/multi") 
+    #cli_parser.add_argument("--output_dir", type=str, default="./roberta/biaffine_model/multi") 
 
-    # cli_parser.add_argument("--output_dir", type=str, default="./bert/biaffine_model/origin/baseline/wCNJ")   # checkout-5  f1-score: 89.62 acc: 89.38
-    cli_parser.add_argument("--output_dir", type=str, default="./bert/biaffine_model/origin/baseline/woCNJ")  # checkout-4  f1-score: 89.61 acc: 89.39
-
-    # cli_parser.add_argument("--output_dir", type=str, default="./bert/baseline/wCNJ")
-
-    #cli_parser.add_argument("--output_dir", type=str, default="./bert/biaffine_model/origin/multi/together/wCNJ")  # checkout-5 f1-score:89.62  acc:89.39
-    #cli_parser.add_argument("--output_dir", type=str, default="./bert/biaffine_model/origin/multi/together/woCNJ") # checkout-5 f1-score: 89.53 acc: 89.29
-
-    #cli_parser.add_argument("--output_dir", type=str, default="./roberta/baseline/")
-    #cli_parser.add_argument("--output_dir", type=str, default="./roberta/biaffine_model/multi/")
 
     # ------------------------------------------------------------------------------------------------------------
 
@@ -201,14 +171,12 @@ if __name__ == '__main__':
     cli_parser.add_argument("--no_cuda", type=bool, default=False)
 
     # Running Mode
-    cli_parser.add_argument("--from_init_weight", type=bool, default= False)#True)
-    cli_parser.add_argument("--add_vocab", type=bool, default=False)
+    cli_parser.add_argument("--from_init_weight", type=bool, default= True) #False)#True)
+    cli_parser.add_argument("--checkpoint", type=str, default="5")
 
-    cli_parser.add_argument("--checkpoint", type=str, default="6")
-
-    cli_parser.add_argument("--do_train", type=bool, default=False)#True)
+    cli_parser.add_argument("--do_train", type=bool, default=True) #False)#True)
     cli_parser.add_argument("--do_eval", type=bool, default=False)#True)#False)
-    cli_parser.add_argument("--do_predict", type=bool, default=True)#False)
+    cli_parser.add_argument("--do_predict", type=bool, default=False) #True)#False)
 
     cli_args = cli_parser.parse_args()
 
