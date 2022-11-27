@@ -272,69 +272,12 @@ def merge_tag(datas, CNJ=True):
 if __name__ == '__main__':
     inf_dir = "../../data/origin/DP_origin_preprocess.json"
     outf_dir = "../../data/origin/merge_origin_preprocess.json"
-    outf_dir_woCNJ = "../../data/origin/merge_origin_preprocess_woCNJ.json"
     #
-    # with open(inf_dir, "r", encoding="utf-8") as inf:
-    #     datas = json.load(inf)
-    # outputs = merge_tag(datas, CNJ=True)
-    # #outputs = merge_tag(datas, CNJ=False)
-    #
-    # with open(outf_dir, "w", encoding="utf-8") as outf:
-    # #with open(outf_dir_woCNJ, "w", encoding="utf-8") as outf:
-    #     json.dump(outputs, outf, ensure_ascii=False, indent=4)
-    # outf.close()
-    #
-    # ####### 데이터 나누기 ########
-    #
-    # with open(outf_dir, "r", encoding="utf-8") as inf:
-    #     # with open(outf_dir_woCNJ, "r", encoding="utf-8") as inf:
-    #     datas = json.load(inf)
-    # print(datas[0]["merge"])
-    #
-    # test = random.sample(datas, 30000)
-    # print(test[0]["merge"])
-    # train = [data for data in datas if data not in test]
-    # print(train[0]["merge"])
-    #
-    # with open("../../data/origin/merge_origin_preprocess/train.json", "w", encoding="utf-8") as outf:
-    #     # with open("../../data/origin/merge_origin_preprocess_woCNJ/train.json", "w", encoding="utf-8") as outf:
-    #     json.dump(train, outf, ensure_ascii=False, indent=4)
-    # outf.close()
-    #
-    # with open("../../data/origin/merge_origin_preprocess/test.json", "w", encoding="utf-8") as outf:
-    #     # with open("../../data/origin/merge_origin_preprocess_woCNJ/test.json", "w", encoding="utf-8") as outf:
-    #     json.dump(test, outf, ensure_ascii=False, indent=4)
-    # outf.close()
-
-    #################################################
-
-    max_len = 0
-    first_dep_list = set()
-    second_dep_list = set()
-    with open("../../data/origin/merge_origin_preprocess_woCNJ/train.json", "r", encoding="utf-8") as inf:
+    with open(inf_dir, "r", encoding="utf-8") as inf:
         datas = json.load(inf)
-    print(datas[101316])
-    print(datas[101317])
-    print(datas[101318])
-    print(datas[101462])
-
-    new_datas = [data for data in (datas[101316: 101316+3]+datas[101462:])]
-
-    with open("../../data/origin/merge_origin_preprocess_woCNJ/sample.json", "w", encoding="utf-8") as outf:
-        json.dump(new_datas, outf, ensure_ascii=False, indent=4)
+    outputs = merge_tag(datas, CNJ=True)
+    
+    with open(outf_dir, "w", encoding="utf-8") as outf:
+        json.dump(outputs, outf, ensure_ascii=False, indent=4)
     outf.close()
-
-
-    # for data in datas:
-    #     if (max_len < len(data["merge"]["parsing"])):max_len = len(data["merge"]["parsing"])
-    #     for parsing in data["merge"]["parsing"]:
-    #         dep = parsing[2]
-    #         first_dep_list.add(dep[0])
-    #         second_dep_list.add(dep[1])
-    # print(max_len) # 117
-    # print(first_dep_list)
-    # print(second_dep_list)
-
-
-
-
+    
