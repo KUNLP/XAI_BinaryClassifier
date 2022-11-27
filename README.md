@@ -14,7 +14,7 @@ All code only supports running on Linux.
 
 # Model Structure
 
-<img src='model.png' width='1000'>
+<img src='model.png' width='600'>
 
 
 
