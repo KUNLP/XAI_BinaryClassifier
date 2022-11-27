@@ -6,14 +6,10 @@ Code for KCC 2022 paper: *[Dual-Classification of Paper Sentence using Chunk Rep
 <img src='kcc2022 poster.png' width='1000'>
 
 
-## Dependencies
-- python 3.6
-- PyTorch 1.8.1
-- tokenizers 0.10.3
-- Transformers 4.7.0
-- konlpy
-- tweepy==3.10.0
-- 그외 `requirement.txt` 참고
+## Setting up the code environment
+`$ virtualenv --python=python3.6 venv`
+`$ source venv/bin/activate`
+`$ pip install -r requirements.txt`
 
 All code only supports running on Linux.
 
