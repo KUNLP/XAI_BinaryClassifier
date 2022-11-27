@@ -271,7 +271,7 @@ def merge_tag(datas, CNJ=True):
 
 if __name__ == '__main__':
     inf_dir = "../../data/origin/DP_origin_preprocess.json"
-    outf_dir = "../../data/origin/merge_origin_preprocess.json"
+    outf_dir = "../../data/origin/merge_origin_preprocess/origin.json"
     #
     with open(inf_dir, "r", encoding="utf-8") as inf:
         datas = json.load(inf)
