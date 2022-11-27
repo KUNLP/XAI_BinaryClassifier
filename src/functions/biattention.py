@@ -1,3 +1,4 @@
+# 해당 코드는 아래 링크에서 가져옴
 # https://github.com/KLUE-benchmark/KLUE-baseline/blob/8a03c9447e4c225e806877a84242aea11258c790/klue_baseline/models/dependency_parsing.py
 import numpy as np
 
