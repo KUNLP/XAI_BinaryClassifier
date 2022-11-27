@@ -4,9 +4,7 @@ import torch
 import numpy as np
 import os
 
-from src.functions.processor_graph import (
-#from src.functions.processor_baseline import (
-# from src.functions.processor import (
+from src.functions.processor import (
     CLASSIFIERProcessor,
     convert_examples_to_features
 )
