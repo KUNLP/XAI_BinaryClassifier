@@ -1,5 +1,8 @@
 # Natural Language Inference using Dependency Parsing
 Code for KCC 2022 paper: *[Dual-Classification of Paper Sentence using Chunk Representation Method and Dependency Parsing](https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11113336)*
+
+
+
 <img src='kcc2022 poster.png' width='1000'>
 
 
@@ -14,7 +17,7 @@ Code for KCC 2022 paper: *[Dual-Classification of Paper Sentence using Chunk Rep
 
 All code only supports running on Linux.
 
-# Model Structure
+## Model Structure
 
 <img src='model.png' width='600'>
 
