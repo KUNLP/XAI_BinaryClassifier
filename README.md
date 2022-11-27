@@ -7,9 +7,12 @@ Code for KCC 2022 paper: *[Dual-Classification of Paper Sentence using Chunk Rep
 
 
 ## Setting up the code environment
-`$ virtualenv --python=python3.6 venv`
-`$ source venv/bin/activate`
-`$ pip install -r requirements.txt`
+
+```
+$ virtualenv --python=python3.6 venv
+$ source venv/bin/activate
+$ pip install -r requirements.txt
+```
 
 All code only supports running on Linux.
 
