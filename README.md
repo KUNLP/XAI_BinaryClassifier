@@ -1,4 +1,4 @@
-# Natural Language Inference using Dependency Parsing
+# Dual-Classification of Scientific Paper Sentence
 Code for KCC 2022 paper: *[Dual-Classification of Paper Sentence using Chunk Representation Method and Dependency Parsing](https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11113336)*
 
 
