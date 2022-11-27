@@ -62,7 +62,7 @@ All code only supports running on Linux.
 
 * 학습 데이터와 평가 데이터를 세부분류별 4:1 비율로 나누기(data/origin/merge_origin_preprocess/origin_train.json, (data/origin/merge_origin_preprocess/origin_test.json))
 
-* [bert/init_weight](https://huggingface.co/klue/bert-base)의 vocab.json에 청크 단위로 구분해주는 스폐셜 토큰(Special Token) *[<WORD>] 추가
+* [bert/init_weight](https://huggingface.co/klue/bert-base)의 vocab.json에 청크 단위로 구분해주는 스폐셜 토큰(Special Token) *<WORD> 추가
 
 ## Train & Test
 
