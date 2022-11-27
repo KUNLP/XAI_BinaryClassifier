@@ -67,6 +67,6 @@ All code only supports running on Linux.
 ## Results 
 
 | Model | Macro F1 | Acc |
-|---|--------- |
+|---|--------- |--------- |
 | BERT | 89.66% | 89.90% |
 | proposed | 89.75% | 89.99% |
