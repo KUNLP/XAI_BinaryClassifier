@@ -66,7 +66,8 @@ All code only supports running on Linux.
 
 ## Train & Test
 
-* KLUE/BERT-base
+
+
   `python run_baseline_torch.py`
 
 ## Results 
