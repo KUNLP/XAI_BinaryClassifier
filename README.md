@@ -68,7 +68,7 @@ All code only supports running on Linux.
 
 ### Pretrained model
 * KLUE/BERT-base
-
+### How To Run
   `python run_baseline_torch.py`
 
 ## Results 
